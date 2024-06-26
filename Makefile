@@ -2,15 +2,19 @@ CC = gcc
 
 CFLAGS = -Wall -Wextra -Werror
 
+LINKFLAGS = -framework Cocoa -framework OpenGL -framework IOKit
+
+MLX = ./lib/MLX/libmlx42.a
+
 NAME = fractol
 
-SRCS = # Path to the utilities files that are within the utils directory
+GLFW_PATH = "/Users/${USER}/.brew/opt/glfw/lib"
+
+# SRCS = # Path to the utilities files that are within the utils directory
 
 OBJS = ${SRCS:.c=.o}
 
-UTILS = libutils.a
-
-PRINTF = libftprintf.a
+PRINTF = "./lib/printf"
 
 
 %.o: %.c utils.h
@@ -20,23 +24,27 @@ PRINTF = libftprintf.a
 all: ${NAME}
 
 
-${NAME}:
-	${CC} ${CFLAGS} fractol.c -L. -lutils -lprintf -o ${NAME}
+${NAME}: ${OBJS} ${PRINTF}
+	@echo "\033[1;33mBuilding Target...\033[0m"
+	${CC} ${CFLAGS} example.c -lglfw -L${GLFW_PATH} ${MLX} ${OBJS} -L${PRINTF} -lftprintf  -o ${NAME}
+	@echo "\033[1;32mTarget Built Successfully!\033[0m"
 
-
-${UTILS}: ${OBJS}
-	ar rsc ${UTILS} ${OBJS}
 
 ${PRINTF}: 
-	cd printf && ${MAKE}
-	cp ./printf/${PRINTF} .
+	@echo "\033[1;33mBuilding printf...\033[0m"
+	cd ./lib/printf && ${MAKE}
+
 
 clean:
-	rm ${OBJS}
-	cd printf && ${MAKE} clean
+	@echo "\033[1;33mRemoving Object files...\033[0m"
+	rm ./utils/${OBJS}
+	cd ./lib/printf && ${MAKE} clean
+
 
 fclean: clean
+	@echo "\033[1;33mRemoving libraries and program...\033[0m"
 	rm ${NAME}
-	cd printf && ${MAKE} fclean
+	cd ./lib/printf && ${MAKE} fclean
+
 
 re: fclean ${NAME}
