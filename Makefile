@@ -4,7 +4,9 @@ CFLAGS = -Wall -Wextra -Werror
 
 LINKFLAGS = -framework Cocoa -framework OpenGL -framework IOKit
 
-MLX = ./lib/MLX/libmlx42.a
+SMLX = "/Users/mben-yah/Desktop/MLX42/build/libmlx42.a"
+
+MLX = "./lib/MLX42/libmlx42.a"
 
 NAME = fractol
 
@@ -24,9 +26,9 @@ PRINTF = "./lib/printf"
 all: ${NAME}
 
 
-${NAME}: ${OBJS} ${PRINTF}
+${NAME}: ${PRINTF} ${SMLX} ${OBJS}
 	@echo "\033[1;33mBuilding Target...\033[0m"
-	${CC} ${CFLAGS} example.c -lglfw -L${GLFW_PATH} ${MLX} ${OBJS} -L${PRINTF} -lftprintf  -o ${NAME}
+	${CC} ${CFLAGS} fractol.c -lglfw -L${GLFW_PATH} ${MLX} ${OBJS} -L${PRINTF} -lftprintf  -o ${NAME}
 	@echo "\033[1;32mTarget Built Successfully!\033[0m"
 
 
@@ -35,9 +37,16 @@ ${PRINTF}:
 	cd ./lib/printf && ${MAKE}
 
 
+${SMLX}:
+	@echo "\033[1;33mFetching the MLX library...\033[0m"
+	echo $(SMLX)
+	@cp ${SMLX} ./lib/MLX42/
+
+
 clean:
 	@echo "\033[1;33mRemoving Object files...\033[0m"
 	rm ./utils/${OBJS}
+	rm ${MLX}
 	cd ./lib/printf && ${MAKE} clean
 
 
