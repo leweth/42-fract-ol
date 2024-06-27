@@ -1,7 +1,0 @@
-{
-	"files.associations": {
-		"unistd.h": "c",
-		"stdbool.h": "c",
-		"ft_printf.h": "c"
-	}
-}
