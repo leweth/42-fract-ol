@@ -1,34 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.h                                            :+:      :+:    :+:   */
+/*   ft_complex.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mben-yah <mben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/26 19:34:46 by mben-yah          #+#    #+#             */
-/*   Updated: 2024/06/27 16:27:28 by mben-yah         ###   ########.fr       */
+/*   Created: 2024/06/27 15:17:32 by mben-yah          #+#    #+#             */
+/*   Updated: 2024/06/27 15:48:34 by mben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef UTILS_H
-# define UTILS_H
+#ifndef FT_COMPLEX_H
+# define FT_COMPLEX_H
 
 
-#include "../lib/printf/ft_printf.h"
-#include "../lib/libft/libft.h"
-#include <stdlib.h>
 #include <math.h>
-#include <stdbool.h>
-#include "../lib/libcmplx/ft_complex.h"
-
-# define SUCCESS 0
-# define FAILURE -1
 
 
-int 		validate_input(char **args);
-t_complex	quad_iter(t_complex z, t_complex c);
-bool		is_in_set(t_complex z);
+typedef struct s_point
+{
+	double	x;
+	double	y;
+}	t_point;
 
+
+typedef t_point t_complex;
+
+t_complex	c_pow(t_complex z);
+double		c_magnitude(t_complex z);
+t_complex	c_sum(t_complex z1, t_complex z2);
 
 
 

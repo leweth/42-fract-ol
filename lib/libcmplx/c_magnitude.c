@@ -1,35 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.h                                            :+:      :+:    :+:   */
+/*   c_magnitude.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mben-yah <mben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/26 19:34:46 by mben-yah          #+#    #+#             */
-/*   Updated: 2024/06/27 16:27:28 by mben-yah         ###   ########.fr       */
+/*   Created: 2024/06/27 15:12:31 by mben-yah          #+#    #+#             */
+/*   Updated: 2024/06/27 16:48:52 by mben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef UTILS_H
-# define UTILS_H
+#include "ft_complex.h"
 
-
-#include "../lib/printf/ft_printf.h"
-#include "../lib/libft/libft.h"
-#include <stdlib.h>
-#include <math.h>
-#include <stdbool.h>
-#include "../lib/libcmplx/ft_complex.h"
-
-# define SUCCESS 0
-# define FAILURE -1
-
-
-int 		validate_input(char **args);
-t_complex	quad_iter(t_complex z, t_complex c);
-bool		is_in_set(t_complex z);
-
-
-
-
-#endif
+double	c_magnitude(t_complex z)
+{
+	return (sqrt(pow(z.x, 2) + pow(z.y, 2)));
+}

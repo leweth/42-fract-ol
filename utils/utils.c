@@ -1,35 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.h                                            :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mben-yah <mben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/26 19:34:46 by mben-yah          #+#    #+#             */
-/*   Updated: 2024/06/27 16:27:28 by mben-yah         ###   ########.fr       */
+/*   Created: 2024/06/27 15:24:44 by mben-yah          #+#    #+#             */
+/*   Updated: 2024/06/27 16:26:34 by mben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef UTILS_H
-# define UTILS_H
+#include "utils.h"
 
+t_complex	quad_iter(t_complex z, t_complex c)
+{
+	return (c_sum(c_pow(z), c));
+}
 
-#include "../lib/printf/ft_printf.h"
-#include "../lib/libft/libft.h"
-#include <stdlib.h>
-#include <math.h>
-#include <stdbool.h>
-#include "../lib/libcmplx/ft_complex.h"
+/* t_point	map_coords(t_point point)
+{
+	t_point	mapped_p;
 
-# define SUCCESS 0
-# define FAILURE -1
+	mapped_p.x = ;
+	mapped_p.y = ;
+} */
 
+bool	is_in_set(t_complex z)
+{
+	if (c_magnitude(z) < 2)
+		return (true);
+	return (false);
+}
 
-int 		validate_input(char **args);
-t_complex	quad_iter(t_complex z, t_complex c);
-bool		is_in_set(t_complex z);
-
-
-
-
-#endif

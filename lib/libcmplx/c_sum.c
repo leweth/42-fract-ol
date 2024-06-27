@@ -1,35 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.h                                            :+:      :+:    :+:   */
+/*   c_sum.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mben-yah <mben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/26 19:34:46 by mben-yah          #+#    #+#             */
-/*   Updated: 2024/06/27 16:27:28 by mben-yah         ###   ########.fr       */
+/*   Created: 2024/06/27 15:41:27 by mben-yah          #+#    #+#             */
+/*   Updated: 2024/06/27 15:41:42 by mben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef UTILS_H
-# define UTILS_H
+#include "ft_complex.h"
 
+t_complex	c_sum(t_complex z1, t_complex z2)
+{
+	t_complex	z;
 
-#include "../lib/printf/ft_printf.h"
-#include "../lib/libft/libft.h"
-#include <stdlib.h>
-#include <math.h>
-#include <stdbool.h>
-#include "../lib/libcmplx/ft_complex.h"
-
-# define SUCCESS 0
-# define FAILURE -1
-
-
-int 		validate_input(char **args);
-t_complex	quad_iter(t_complex z, t_complex c);
-bool		is_in_set(t_complex z);
-
-
-
-
-#endif
+	z.x = z1.x + z2.x;
+	z.y = z1.y + z2.y;
+	return (z);
+}

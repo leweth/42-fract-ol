@@ -2,25 +2,27 @@ CC = gcc
 
 CFLAGS = -Wall -Wextra -Werror
 
+NAME = fractol
+
+SRCS = utils/utils.c utils/validate_input.c 
+
+OBJS = ${SRCS:.c=.o}
+
 LINKFLAGS = -framework Cocoa -framework OpenGL -framework IOKit
 
 SMLX = "/Users/mben-yah/Desktop/MLX42/build/libmlx42.a"
 
 MLX = "lib/MLX42/libmlx42.a"
 
-NAME = fractol
-
 GLFW_PATH = "/Users/${USER}/.brew/opt/glfw/lib"
-
-SRCS = utils/validate_input.c 
-
-OBJS = ${SRCS:.c=.o}
 
 PRINTF = "lib/printf"
 
 LIBFT = "lib/libft"
 
-LIBS = -lglfw -L${GLFW_PATH} ${MLX} ${OBJS} -L${PRINTF} -lftprintf -L${LIBFT} -lft
+LIBCMPLX =  "lib/libcmplx"
+
+LIBS = -lglfw -L${GLFW_PATH} ${MLX} ${OBJS} -L${PRINTF} -lftprintf -L${LIBFT} -lft -L${LIBCMPLX} -lcmplx
 
 
 %.o: %.c utils.h
@@ -30,7 +32,7 @@ LIBS = -lglfw -L${GLFW_PATH} ${MLX} ${OBJS} -L${PRINTF} -lftprintf -L${LIBFT} -l
 all: ${NAME}
 
 
-${NAME}: ${PRINTF} ${SMLX} ${LIBFT} ${OBJS}
+${NAME}: ${PRINTF} ${SMLX} ${LIBFT} ${OBJS} ${LIBCMPLX}
 	@echo "\033[1;33mBuilding Target...\033[0m"
 	${CC} ${CFLAGS} fractol.c ${LIBS} -o ${NAME}
 	@echo "\033[1;32mTarget Built Successfully!\033[0m"
@@ -43,7 +45,12 @@ ${LIBFT}:
 
 ${PRINTF}: 
 	@echo "\033[1;33mBuilding printf...\033[0m"
-	cd ./lib/printf && ${MAKE}
+	cd lib/printf && ${MAKE}
+
+
+${LIBCMPLX}:
+	@echo "\033[1;33mBuilding libcmplx...\033[0m"
+	cd lib/libcmplx && ${MAKE}
 
 
 ${SMLX}:
@@ -54,9 +61,10 @@ ${SMLX}:
 
 clean:
 	@echo "\033[1;33mRemoving Object files...\033[0m"
-	rm ${OBJS}
 	cd lib/printf && ${MAKE} clean
 	cd lib/libft && ${MAKE} clean
+	cd lib/libcmplx && ${MAKE} clean
+	rm ${OBJS}
 
 
 fclean: clean
@@ -65,5 +73,6 @@ fclean: clean
 	rm ${MLX}
 	cd lib/printf && ${MAKE} fclean
 	cd lib/libft && ${MAKE} fclean
+	cd lib/libcmplx && ${MAKE} fclean
 
 re: fclean ${NAME}
