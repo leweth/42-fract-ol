@@ -1,27 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.h                                            :+:      :+:    :+:   */
+/*   ft_lstsize_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mben-yah <mben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/26 19:34:46 by mben-yah          #+#    #+#             */
-/*   Updated: 2024/06/27 10:30:33 by mben-yah         ###   ########.fr       */
+/*   Created: 2024/01/12 21:55:33 by mben-yah          #+#    #+#             */
+/*   Updated: 2024/01/12 22:01:04 by mben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef UTILS_H
-# define UTILS_H
+#include "libft.h"
 
+int	ft_lstsize(t_list *lst)
+{
+	int	len;
 
-#include "../lib/printf/ft_printf.h"
-#include "../lib/libft/libft.h"
-#include <stdlib.h>
-
-
-int		ft_memcmp(const void *s1, const void *s2, size_t n);
-int		ft_tolower(int c);
-size_t	ft_strlen(const char *str);
-int 	validate_input(char *str);
-
-#endif
+	len = 0;
+	while (lst)
+	{
+		len++;
+		lst = lst->next;
+	}
+	return (len);
+}

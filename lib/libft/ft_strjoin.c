@@ -1,27 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.h                                            :+:      :+:    :+:   */
+/*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mben-yah <mben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/26 19:34:46 by mben-yah          #+#    #+#             */
-/*   Updated: 2024/06/27 10:30:33 by mben-yah         ###   ########.fr       */
+/*   Created: 2024/01/08 11:15:43 by mben-yah          #+#    #+#             */
+/*   Updated: 2024/01/08 11:51:39 by mben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef UTILS_H
-# define UTILS_H
+#include "libft.h"
 
+char	*ft_strjoin(char const *s1, char const *s2)
+{
+	char	*tmp;
+	size_t	s1_len;
+	size_t	s2_len;
 
-#include "../lib/printf/ft_printf.h"
-#include "../lib/libft/libft.h"
-#include <stdlib.h>
-
-
-int		ft_memcmp(const void *s1, const void *s2, size_t n);
-int		ft_tolower(int c);
-size_t	ft_strlen(const char *str);
-int 	validate_input(char *str);
-
-#endif
+	if (!s1 || !s2)
+		return (0);
+	s1_len = ft_strlen(s1);
+	s2_len = ft_strlen(s2);
+	tmp = malloc(s1_len + s2_len + 1);
+	if (!tmp)
+		return (0);
+	ft_strlcpy(tmp, s1, s1_len + s2_len + 1);
+	ft_strlcat(tmp, s2, s1_len + s2_len + 1);
+	return (tmp);
+}

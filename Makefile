@@ -6,17 +6,21 @@ LINKFLAGS = -framework Cocoa -framework OpenGL -framework IOKit
 
 SMLX = "/Users/mben-yah/Desktop/MLX42/build/libmlx42.a"
 
-MLX = "./lib/MLX42/libmlx42.a"
+MLX = "lib/MLX42/libmlx42.a"
 
 NAME = fractol
 
 GLFW_PATH = "/Users/${USER}/.brew/opt/glfw/lib"
 
-# SRCS = # Path to the utilities files that are within the utils directory
+SRCS = utils/validate_input.c 
 
 OBJS = ${SRCS:.c=.o}
 
-PRINTF = "./lib/printf"
+PRINTF = "lib/printf"
+
+LIBFT = "lib/libft"
+
+LIBS = -lglfw -L${GLFW_PATH} ${MLX} ${OBJS} -L${PRINTF} -lftprintf -L${LIBFT} -lft
 
 
 %.o: %.c utils.h
@@ -26,10 +30,15 @@ PRINTF = "./lib/printf"
 all: ${NAME}
 
 
-${NAME}: ${PRINTF} ${SMLX} ${OBJS}
+${NAME}: ${PRINTF} ${SMLX} ${LIBFT} ${OBJS}
 	@echo "\033[1;33mBuilding Target...\033[0m"
-	${CC} ${CFLAGS} fractol.c -lglfw -L${GLFW_PATH} ${MLX} ${OBJS} -L${PRINTF} -lftprintf  -o ${NAME}
+	${CC} ${CFLAGS} fractol.c ${LIBS} -o ${NAME}
 	@echo "\033[1;32mTarget Built Successfully!\033[0m"
+
+
+${LIBFT}:
+	@echo "\033[1;33mBuilding libft...\033[0m"
+	cd  lib/libft && ${MAKE}
 
 
 ${PRINTF}: 
@@ -45,15 +54,16 @@ ${SMLX}:
 
 clean:
 	@echo "\033[1;33mRemoving Object files...\033[0m"
-	rm ./utils/${OBJS}
-	rm ${MLX}
-	cd ./lib/printf && ${MAKE} clean
+	rm ${OBJS}
+	cd lib/printf && ${MAKE} clean
+	cd lib/libft && ${MAKE} clean
 
 
 fclean: clean
 	@echo "\033[1;33mRemoving libraries and program...\033[0m"
 	rm ${NAME}
-	cd ./lib/printf && ${MAKE} fclean
-
+	rm ${MLX}
+	cd lib/printf && ${MAKE} fclean
+	cd lib/libft && ${MAKE} fclean
 
 re: fclean ${NAME}

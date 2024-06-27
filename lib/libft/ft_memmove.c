@@ -1,27 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.h                                            :+:      :+:    :+:   */
+/*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mben-yah <mben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/26 19:34:46 by mben-yah          #+#    #+#             */
-/*   Updated: 2024/06/27 10:30:33 by mben-yah         ###   ########.fr       */
+/*   Created: 2023/12/09 22:03:49 by mben-yah          #+#    #+#             */
+/*   Updated: 2024/01/21 20:37:32 by mben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef UTILS_H
-# define UTILS_H
+#include "libft.h"
 
+void	*ft_memmove(void *dst, const void *src, size_t len)
+{
+	unsigned char	*p1;
+	unsigned char	*p2;
 
-#include "../lib/printf/ft_printf.h"
-#include "../lib/libft/libft.h"
-#include <stdlib.h>
-
-
-int		ft_memcmp(const void *s1, const void *s2, size_t n);
-int		ft_tolower(int c);
-size_t	ft_strlen(const char *str);
-int 	validate_input(char *str);
-
-#endif
+	p1 = (unsigned char *)dst;
+	p2 = (unsigned char *)src;
+	if (dst == src)
+		return (dst);
+	if (dst > src)
+	{
+		while (len--)
+			*(p1 + len) = *(p2 + len);
+	}
+	else
+		ft_memcpy(dst, src, len);
+	return (dst); 
+}

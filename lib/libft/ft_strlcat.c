@@ -1,27 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.h                                            :+:      :+:    :+:   */
+/*   ft_strlcat.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mben-yah <mben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/26 19:34:46 by mben-yah          #+#    #+#             */
-/*   Updated: 2024/06/27 10:30:33 by mben-yah         ###   ########.fr       */
+/*   Created: 2024/01/06 22:31:58 by mben-yah          #+#    #+#             */
+/*   Updated: 2024/01/21 20:39:04 by mben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef UTILS_H
-# define UTILS_H
+#include "libft.h"
 
+size_t	ft_strlcat(char *dst, const char *src, size_t dstsize)
+{
+	size_t	i;
+	size_t	dst_len;
 
-#include "../lib/printf/ft_printf.h"
-#include "../lib/libft/libft.h"
-#include <stdlib.h>
-
-
-int		ft_memcmp(const void *s1, const void *s2, size_t n);
-int		ft_tolower(int c);
-size_t	ft_strlen(const char *str);
-int 	validate_input(char *str);
-
-#endif
+	i = 0;
+	dst_len = ft_strlen(dst);
+	if (!dstsize || dst_len > dstsize)
+		return (ft_strlen(src) + dstsize);
+	while (src[i] && i + dst_len < dstsize - 1)
+	{
+		dst[i + dst_len] = src[i];
+		i++;
+	}
+	dst[i + dst_len] = 0;
+	return (dst_len + ft_strlen(src));
+}

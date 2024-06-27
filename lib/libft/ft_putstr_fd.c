@@ -1,27 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.h                                            :+:      :+:    :+:   */
+/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mben-yah <mben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/26 19:34:46 by mben-yah          #+#    #+#             */
-/*   Updated: 2024/06/27 10:30:33 by mben-yah         ###   ########.fr       */
+/*   Created: 2024/01/08 16:44:11 by mben-yah          #+#    #+#             */
+/*   Updated: 2024/01/21 20:38:12 by mben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef UTILS_H
-# define UTILS_H
+#include "libft.h"
 
-
-#include "../lib/printf/ft_printf.h"
-#include "../lib/libft/libft.h"
-#include <stdlib.h>
-
-
-int		ft_memcmp(const void *s1, const void *s2, size_t n);
-int		ft_tolower(int c);
-size_t	ft_strlen(const char *str);
-int 	validate_input(char *str);
-
-#endif
+void	ft_putstr_fd(char *s, int fd)
+{
+	if (!s)
+		return ;
+	write(fd, s, ft_strlen(s));
+}
