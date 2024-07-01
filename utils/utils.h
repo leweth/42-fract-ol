@@ -6,7 +6,7 @@
 /*   By: mben-yah <mben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 19:34:46 by mben-yah          #+#    #+#             */
-/*   Updated: 2024/06/27 16:27:28 by mben-yah         ###   ########.fr       */
+/*   Updated: 2024/06/27 18:42:05 by mben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,8 @@
 
 
 int 		validate_input(char **args);
-t_complex	quad_iter(t_complex z, t_complex c);
-bool		is_in_set(t_complex z);
-
+// t_complex	quad_iter(t_complex z, t_complex c);
+bool		is_in_set(t_complex z0, size_t iters, t_complex c);
 
 
 
