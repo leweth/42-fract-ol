@@ -22,7 +22,7 @@ LIBFT = "lib/libft"
 
 LIBCMPLX =  "lib/libcmplx"
 
-LIBS = -lglfw -L${GLFW_PATH} ${MLX} ${OBJS} -L${PRINTF} -lftprintf -L${LIBFT} -lft -L${LIBCMPLX} -lcmplx
+LIBS = -lglfw -L${GLFW_PATH} ${MLX} ${OBJS} -L${PRINTF} -lftprintf -L${LIBFT} -lft -L${LIBCMPLX} -lcmplx -lm
 
 
 %.o: %.c utils.h

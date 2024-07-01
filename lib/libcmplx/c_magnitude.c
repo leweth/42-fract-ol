@@ -6,7 +6,7 @@
 /*   By: mben-yah <mben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/27 15:12:31 by mben-yah          #+#    #+#             */
-/*   Updated: 2024/06/27 16:48:52 by mben-yah         ###   ########.fr       */
+/*   Updated: 2024/07/01 18:06:09 by mben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,4 +15,5 @@
 double	c_magnitude(t_complex z)
 {
 	return (sqrt(pow(z.x, 2) + pow(z.y, 2)));
+	// return (z.x * z.x + z.y * z.y);
 }

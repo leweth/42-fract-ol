@@ -6,7 +6,7 @@
 /*   By: mben-yah <mben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 19:34:46 by mben-yah          #+#    #+#             */
-/*   Updated: 2024/06/27 18:42:05 by mben-yah         ###   ########.fr       */
+/*   Updated: 2024/07/01 14:47:03 by mben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,17 @@
 #include <math.h>
 #include <stdbool.h>
 #include "../lib/libcmplx/ft_complex.h"
-
+#include "../lib/MLX42/MLX42.h"
 # define SUCCESS 0
 # define FAILURE -1
 
+
+typedef struct s_params
+{
+	mlx_image_t *img;
+	t_complex	c; 
+	size_t		iters;
+} 	t_params;
 
 int 		validate_input(char **args);
 // t_complex	quad_iter(t_complex z, t_complex c);
