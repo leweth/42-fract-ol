@@ -4,7 +4,7 @@ CFLAGS = -Wall -Wextra -Werror
 
 NAME = fractol
 
-SRCS = utils/utils.c utils/validate_input.c 
+SRCS = utils/utils.c utils/validate_input.c utils/atod.c
 
 OBJS = ${SRCS:.c=.o}
 
