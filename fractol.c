@@ -6,7 +6,7 @@
 /*   By: mben-yah <mben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 19:35:02 by mben-yah          #+#    #+#             */
-/*   Updated: 2024/07/04 17:55:02 by mben-yah         ###   ########.fr       */
+/*   Updated: 2024/07/04 19:19:53 by mben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,60 +52,83 @@ static t_complex	rescale(t_complex z)
 	return (z0);
 }
 #include <math.h>
+uint32_t smooth_color(double t)
+{
+    // Define a black to white color palette
+    uint32_t colors[] = {
+    0x264653FF,  // Charcoal
+    0x2A9D8FFF,  // Persian green
+    0xE9C46AFF,  // Saffron
+    0xF4A261FF,  // Sandy brown
+    0xE76F51FF,  // Burnt sienna
+    0x8ECAE6FF,  // Light blue
+    0x219EBCFF,  // Blue (cerulean)
+    0x023047FF,  // Prussian blue
+    0xFFB703FF,  // Amber
+    0xFB8500FF   // Orange
+};
 
-#include <math.h>
+
+    int num_colors = sizeof(colors) / sizeof(colors[0]);
+    
+    double scaled_t = t * (num_colors - 1);
+    int index = (int)scaled_t;
+    double frac = scaled_t - index;
+    
+    uint32_t color1 = colors[index];
+    uint32_t color2 = colors[min(index + 1, num_colors - 1)];
+    
+    uint8_t r = (1 - frac) * ((color1 >> 16) & 0xFF) + frac * ((color2 >> 16) & 0xFF);
+    uint8_t g = (1 - frac) * ((color1 >> 8) & 0xFF) + frac * ((color2 >> 8) & 0xFF);
+    uint8_t b = (1 - frac) * (color1 & 0xFF) + frac * (color2 & 0xFF);
+    
+    return (r << 16) | (g << 8) | b;
+}
 
 void draw_pixel(t_pixel pixel, uint32_t color, uint16_t iters)
 {
-    int alpha;
-    int transparency;
-    int dx, dy, distance;
-    int centerX = WIDTH / 2;
-    int centerY = HEIGHT / 2;
-
-    (void) iters;
-    alpha = (color >> 24) & 0xFF;
-
-    dx = pixel.i - centerX;
-    dy = pixel.j - centerY;
-    distance = sqrt(dx * dx + dy * dy);
-    transparency = alpha * (1 - (float)distance / (sqrt(centerX * centerX + centerY * centerY)));
-
-    color = (color & 0x00FFFFFF) | (transparency << 24);
+	(void) pixel;
+	(void) iters;
+	(void) color;
     mlx_put_pixel(pixel.img, pixel.i, pixel.j, color);
+
 }
-
-
-
-
-
-
-
-
-static int	color_set(mlx_image_t *img, t_complex c, size_t iters)
+static int color_set(mlx_image_t *img, t_complex c, size_t iters)
 {
-	u_int32_t	i;
-	u_int32_t	j;
-	t_complex	z0;
-	t_complex	der;
-
-	i = 0;
-	der = (t_complex){1.0, 0.0};
-	while (i < WIDTH)
-	{
-		j = 0;
-		while (j < HEIGHT)
-		{
-			z0 = (t_complex){i, j};
-			if (is_in_set(rescale(z0), iters, c) == true)
-				draw_pixel((t_pixel){img, i, j}, 0x000000FF, iters);
-			else
-				draw_pixel((t_pixel){img, i, j}, 0xFFFFFFFF, iters);
-			j++;
-		}
-		i++;
-	}
-	return (SUCCESS);
+    u_int32_t i;
+    u_int32_t j;
+    t_complex z0;
+    
+    i = 0;
+    while (i < WIDTH)
+    {
+        j = 0;
+        while (j < HEIGHT)
+        {
+            z0 = (t_complex){i, j};
+            t_complex z = rescale(z0);
+            size_t iter;
+            
+            for (iter = 0; iter < iters; iter++)
+            {
+                if (c_magnitude(z) > 2)
+                    break;
+                z = quad_iter(z, c);
+            }
+            
+            if (iter == iters)
+                draw_pixel((t_pixel){img, i, j}, WHITE, iters); // Black for points in the set
+            else
+            {
+                double t = (double)iter / iters;
+                uint32_t color = smooth_color(t);
+                draw_pixel((t_pixel){img, i, j}, color, iter);
+            }
+            j++;
+        }
+        i++;
+    }
+    return (SUCCESS);
 }
 
 static int	color_set2(mlx_image_t *img, size_t iters)
@@ -151,7 +174,7 @@ int main(int argc, char **argv)
 	mlx_image_t* img = mlx_new_image(mlx, WIDTH, HEIGHT);
 	if (set == MANDELBROT)
 	{
-		if (color_set2(img, 100) < 0)
+		if (color_set2(img, 500000) < 0)
 			return (printf("Error in rendering..\n"));
 	}
 	else if (set == JULIA)

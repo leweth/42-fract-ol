@@ -6,7 +6,7 @@
 /*   By: mben-yah <mben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 19:34:46 by mben-yah          #+#    #+#             */
-/*   Updated: 2024/07/04 17:54:27 by mben-yah         ###   ########.fr       */
+/*   Updated: 2024/07/04 19:15:42 by mben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,10 @@
 
 #define ANGLE 1.5
 
-#define WHITE 0x00FFFFFF
+#define MAX_ITERATIONS 1000000
+#define BLACK 0x000000FF
+#define WHITE 0xFFFFFFFF
+#define min(a,b) ((a) < (b) ? (a) : (b))
 /* 
 typedef struct s_params
 {
@@ -53,12 +56,7 @@ int 		validate_input(int argc, char **args, t_complex *c);
 // t_complex	quad_iter(t_complex z, t_complex c);
 bool		is_in_set(t_complex z0, size_t iters, t_complex c);
 double		atod(const char *str, int *err);
-int			normal_color(t_complex z, t_complex der);
-double		abs_complex(t_complex complex);
-double		dot_complex(t_complex *a, t_complex *b);
-void	exp_complex(double angle, t_complex *result);
-int		normal_color(t_complex z, t_complex der);
-t_complex	conjugate(t_complex a);
-t_complex	divide_complex(t_complex numerator, t_complex denominator);
+t_complex	quad_iter(t_complex z, t_complex c);
+t_complex c_pow5_add_c(t_complex z, t_complex c);
 
 #endif
