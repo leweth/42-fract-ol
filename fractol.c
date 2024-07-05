@@ -6,7 +6,7 @@
 /*   By: mben-yah <mben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 19:35:02 by mben-yah          #+#    #+#             */
-/*   Updated: 2024/07/05 12:29:23 by mben-yah         ###   ########.fr       */
+/*   Updated: 2024/07/05 12:35:29 by mben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,5 +74,5 @@ int main(int argc, char **argv)
 	mlx_close_hook(mlx, clean_close, mlx);
 	mlx_loop(mlx);
 	mlx_terminate(mlx);
-	return (free(fractal.palette), EXIT_SUCCESS);
+	return (free(fractal.palette), fractal.palette = NULL, EXIT_SUCCESS);
 }
