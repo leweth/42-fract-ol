@@ -6,11 +6,22 @@
 /*   By: mben-yah <mben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/27 15:24:44 by mben-yah          #+#    #+#             */
-/*   Updated: 2024/07/05 11:42:05 by mben-yah         ###   ########.fr       */
+/*   Updated: 2024/07/05 16:37:47 by mben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "utils.h"
+
+void	initilize_fractal(t_fractal *fractal)
+{
+	fractal->mlx = NULL;
+	fractal->img = NULL;
+	fractal->palette = color_palette();
+	if (!fractal->palette)
+		fractal->err = FAILED_MALLOC_ERR;
+	fractal->type = 0;
+	fractal->err = 0;
+}
 
 int	min(int a, int b)
 {
