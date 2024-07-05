@@ -37,8 +37,6 @@ double	atod(const char *str, int *err)
 	conv2 = 0;
 	while (ft_isspace(str[i]))
 		i++;
-	if (!ft_isdigit(str[i]) && !(str[i] == '+' || str[i] == '-'))
-		*err = FAILURE;
 	if (str[i] == '+' || str[i] == '-')
 	{
 		if (str[i] == '-')

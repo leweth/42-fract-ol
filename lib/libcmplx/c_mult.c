@@ -1,18 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_error.c                                      :+:      :+:    :+:   */
+/*   c_mult.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mben-yah <mben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/04 14:35:04 by mben-yah          #+#    #+#             */
-/*   Updated: 2024/07/04 14:36:14 by mben-yah         ###   ########.fr       */
+/*   Created: 2024/07/05 10:27:07 by mben-yah          #+#    #+#             */
+/*   Updated: 2024/07/05 10:30:07 by mben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "utils.h"
+#include "ft_complex.h"
 
-void	printf_error(int err)
+t_complex	c_mult(t_complex z1, t_complex z2)
 {
-	// if (err == )
+	t_complex	z;
+
+	z.x = z1.x * z2.x - z1.y * z2.y;
+	z.y = z1.x * z2.y + z1.y * z1.x;
+	return (z);
 }
