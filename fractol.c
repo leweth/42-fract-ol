@@ -6,20 +6,19 @@
 /*   By: mben-yah <mben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 19:35:02 by mben-yah          #+#    #+#             */
-/*   Updated: 2024/07/06 15:12:51 by mben-yah         ###   ########.fr       */
+/*   Updated: 2024/07/06 18:49:28 by mben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "utils/utils.h"
-#include <stdio.h>
 
-static void clean_close(void* param)
+/* static void clean_close(void* param)
 {
 	t_fractal *fractal;
 
 	fractal = param;
 	clean_exit(fractal);
-}
+} */
 
 static void	esc_hook(mlx_key_data_t keydata, void* param)
 {
@@ -50,8 +49,8 @@ int main(int argc, char **argv)
 	if (fractal.err < 0)
 		clean_exit(&fractal);
 	mlx_key_hook(fractal.mlx, esc_hook, (void *) &fractal);
-	mlx_cursor_hook(fractal.mlx, cursor_coords, &fractal);
-	mlx_close_hook(fractal.mlx, clean_close, &fractal);
+	// mlx_cursor_hook(fractal.mlx, cursor_coords, &fractal);
+	// mlx_close_hook(fractal.mlx, clean_close, &fractal);
 	mlx_scroll_hook(fractal.mlx, scroll_trigger, &fractal);
 	mlx_loop(fractal.mlx);
 	clean_exit(&fractal);

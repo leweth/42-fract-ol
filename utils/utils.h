@@ -6,7 +6,7 @@
 /*   By: mben-yah <mben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 19:34:46 by mben-yah          #+#    #+#             */
-/*   Updated: 2024/07/06 15:11:36 by mben-yah         ###   ########.fr       */
+/*   Updated: 2024/07/06 19:17:18 by mben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@
 # define WIDTH 1000
 # define HEIGHT 1000
 
+# define DEFAULT_ITERS 100
 
 /* Color codes */
 
@@ -86,6 +87,9 @@ typedef struct s_fractal
 	t_point		y_axis_limits;
 	double		zoom_value;
 	t_complex	c;
+	uint32_t	iters;
+	bool		cursor_flag;
+	bool		scroll_flag;
 } 	t_fractal;
 
 
@@ -99,8 +103,8 @@ double		atod(const char *str, int *err);
 void		draw_fractal(t_fractal *fractal);
 t_complex	quad_iter(t_complex z, t_complex c);
 t_complex	rescale(t_fractal fractal, t_complex z);
-int			draw_julia(t_fractal fractal, t_complex c, size_t iters);
-int			draw_mandelbrot(t_fractal fractal, size_t iters);
+int			draw_julia(t_fractal fractal, t_complex c, uint32_t iters);
+int			draw_mandelbrot(t_fractal fractal, uint32_t iters);
 int			min(int a, int b);
 void		color_palette();
 void		print_error(int err);
