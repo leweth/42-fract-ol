@@ -6,19 +6,14 @@
 /*   By: mben-yah <mben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 10:56:15 by mben-yah          #+#    #+#             */
-/*   Updated: 2024/07/05 12:16:15 by mben-yah         ###   ########.fr       */
+/*   Updated: 2024/07/06 09:38:54 by mben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "utils.h"
 
-uint32_t	*color_palette()
+void	color_palette(uint32_t *colors)
 {
-	uint32_t *colors;
-
-	colors = malloc(10);
-	if (!colors)
-		return (NULL);
 	colors[0] = CHARCOAL;
 	colors[1] = PERSIAN_GREEN;
 	colors[2] = SAFFRON;
@@ -29,7 +24,6 @@ uint32_t	*color_palette()
 	colors[7] = PRUSSIAN_BLUE;
 	colors[8] = AMBER;
 	colors[9] = ORANGE;
-	return (colors);
 }
 uint32_t smooth_color(double t, uint32_t *colors)
 {

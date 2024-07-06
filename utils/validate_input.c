@@ -6,7 +6,7 @@
 /*   By: mben-yah <mben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 19:34:50 by mben-yah          #+#    #+#             */
-/*   Updated: 2024/07/05 15:51:30 by mben-yah         ###   ########.fr       */
+/*   Updated: 2024/07/06 09:53:29 by mben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,27 +37,27 @@ static int	check_set(char *str)
 		return (WRONG_FRCTAL_NAME);
 }
 
-int validate_input(t_fractal *fractal, int argc, char **args, t_complex *c)
+void	validate_input(t_fractal *fractal, int argc, char **args, t_complex *c)
 {
 	int			set;
 
 	if (argc < 2)
-		return (fractal->err = ONE_ARGUMENT_ERR, FAILURE);
+		fractal->err = ONE_ARGUMENT_ERR;
 	set = check_set(args[1]);
 	if (set == MANDELBROT)
-		return  (fractal->type = MANDELBROT, SUCCESS);
+		fractal->type = MANDELBROT;
 	else if (set == JULIA)
 	{
 		if (argc < 4)
-			return (fractal->err = NO_JULIA_PARAMS, FAILURE);
+			fractal->err = NO_JULIA_PARAMS;
 		c->x = atod(args[2], &(fractal->err));
 		if (fractal->err < 0)
-			return (FAILURE);
+			return ;
 		c->y = atod(args[3], &(fractal->err));
 		if (fractal->err < 0)
-			return (FAILURE);
-		return (fractal->type = JULIA, SUCCESS);
+			return ;
+		fractal->type = JULIA;
 	}
 	else
-		return (fractal->err = WRONG_FRCTAL_NAME, FAILURE);
+		fractal->err = WRONG_FRCTAL_NAME;
 }

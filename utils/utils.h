@@ -6,7 +6,7 @@
 /*   By: mben-yah <mben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 19:34:46 by mben-yah          #+#    #+#             */
-/*   Updated: 2024/07/05 16:12:40 by mben-yah         ###   ########.fr       */
+/*   Updated: 2024/07/06 09:59:34 by mben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,17 @@
 # define SUCCESS 0
 # define FAILURE -1
 
+
+/* Fractal types */
+
 # define MANDELBROT 41
 # define JULIA 42
 
 # define WIDTH 1000
 # define HEIGHT 1000
+
+
+/* Color codes */
 
 # define BLACK 0x000000FF
 # define WHITE 0xFFFFFFFF
@@ -47,13 +53,12 @@
 # define ORANGE 0xFB8500FF
 
 
-/* ERROR NUMBERS */
+/* Error number */
 
 # define ONE_ARGUMENT_ERR -11
 # define WRONG_FRCTAL_NAME -12
 # define NO_JULIA_PARAMS -13
 # define WRONG_NUMS_FORMAT_ERR -14
-# define FAILED_MALLOC_ERR -20
 # define EXCEEDS_MAX_DOUBLE -21
 # define RENDERING_ERR -22
 
@@ -72,22 +77,27 @@ typedef struct s_fractal
 {
 	mlx_t		*mlx;
 	mlx_image_t *img;
-	uint32_t	*palette;
+	uint32_t	palette[10];
 	t_pixel		pixel_coords;
 	int			type;
 	int			err;
 } 	t_fractal;
 
 
-int 		validate_input(t_fractal *fractal, int argc, char **args, t_complex *c);
+/* Input validation and initialization function */
+void		initilize_fractal(t_fractal *fractal);
+void		validate_input(t_fractal *fractal, int argc, char **args, t_complex *c);
 double		atod(const char *str, int *err);
+
+
+/* Rendering functions */
 t_complex	quad_iter(t_complex z, t_complex c);
 t_complex	rescale(t_complex z);
 int			draw_julia(t_fractal fractal, t_complex c, size_t iters);
 int			draw_mandelbrot(t_fractal fractal, size_t iters);
 int			min(int a, int b);
-uint32_t	*color_palette();
+void		color_palette();
 void		print_error(int err);
-void		initilize_fractal(t_fractal *fractal);
+
 
 #endif
