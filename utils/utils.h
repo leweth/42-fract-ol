@@ -6,7 +6,7 @@
 /*   By: mben-yah <mben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 19:34:46 by mben-yah          #+#    #+#             */
-/*   Updated: 2024/07/06 09:59:34 by mben-yah         ###   ########.fr       */
+/*   Updated: 2024/07/06 15:11:36 by mben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,11 @@ typedef struct s_fractal
 	t_pixel		pixel_coords;
 	int			type;
 	int			err;
+	t_point		cursor_coords;
+	t_point		x_axis_limits;
+	t_point		y_axis_limits;
+	double		zoom_value;
+	t_complex	c;
 } 	t_fractal;
 
 
@@ -91,13 +96,27 @@ double		atod(const char *str, int *err);
 
 
 /* Rendering functions */
+void		draw_fractal(t_fractal *fractal);
 t_complex	quad_iter(t_complex z, t_complex c);
-t_complex	rescale(t_complex z);
+t_complex	rescale(t_fractal fractal, t_complex z);
 int			draw_julia(t_fractal fractal, t_complex c, size_t iters);
 int			draw_mandelbrot(t_fractal fractal, size_t iters);
 int			min(int a, int b);
 void		color_palette();
 void		print_error(int err);
+
+
+/* Zoom functions */
+void		scroll_trigger(double xdelta, double ydelta, void* param);
+void		cursor_coords(double xpos, double ypos, void* param);
+
+
+/* Error function */
+void		ft_error(t_fractal *fractal);
+
+
+/* Exit function */
+void		clean_exit(t_fractal *fractal);
 
 
 #endif

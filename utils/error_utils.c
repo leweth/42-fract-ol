@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_error.c                                      :+:      :+:    :+:   */
+/*   error_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mben-yah <mben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 14:55:27 by mben-yah          #+#    #+#             */
-/*   Updated: 2024/07/06 10:06:46 by mben-yah         ###   ########.fr       */
+/*   Updated: 2024/07/06 15:08:19 by mben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ static void	print_redundant(const char *str)
 	ft_printf("You must choose either 'Mandelbrot' or 'Julia'.\n");
 	ft_printf("The next two arguments are for the Julia's parameter.\n");
 }
+
 void	print_error(int err)
 {
 	if (err == ONE_ARGUMENT_ERR)
@@ -33,4 +34,10 @@ void	print_error(int err)
 		print_redundant("Number exceeds the available max for the double data type.");
 	else if (err == RENDERING_ERR)
 		ft_printf("Error in rendering.\n");
+}
+
+void ft_error(t_fractal *fractal)
+{
+	ft_printf("%s\n", mlx_strerror(mlx_errno));
+	clean_exit(fractal);
 }

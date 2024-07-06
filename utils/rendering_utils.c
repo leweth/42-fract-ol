@@ -6,7 +6,7 @@
 /*   By: mben-yah <mben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 10:56:15 by mben-yah          #+#    #+#             */
-/*   Updated: 2024/07/06 09:38:54 by mben-yah         ###   ########.fr       */
+/*   Updated: 2024/07/06 15:09:06 by mben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ int draw_julia(t_fractal fractal, t_complex c, size_t iters)
         {
             z0 = (t_complex){i, j};
 			fractal.pixel_coords = (t_pixel) {i, j};  
-            render_fractal(fractal, rescale(z0), iters, c);
+            render_fractal(fractal, rescale(fractal, z0), iters, c);
             j++;
         }
         i++;
@@ -106,10 +106,24 @@ int	draw_mandelbrot(t_fractal fractal, size_t iters)
 		{
 			c = (t_complex){i, j};
 			fractal.pixel_coords = (t_pixel) {i, j};  
-			render_fractal(fractal,  (t_complex){0, 0}, iters, rescale(c));
+			render_fractal(fractal,  (t_complex){0, 0}, iters, rescale(fractal, c));
 			j++;
 		}
 		i++;
 	}
 	return (SUCCESS);
+}
+
+void	draw_fractal(t_fractal *fractal)
+{
+	if (fractal->type == MANDELBROT)
+	{	
+		if (draw_mandelbrot(*fractal, 1000) < 0)
+			fractal->err = RENDERING_ERR;
+	}
+	else if (fractal->type == JULIA)
+	{	
+		if (draw_julia(*fractal, fractal->c, 1000) < 0)
+			fractal->err = RENDERING_ERR;
+	}
 }
