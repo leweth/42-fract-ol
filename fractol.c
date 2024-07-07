@@ -6,7 +6,7 @@
 /*   By: mben-yah <mben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 19:35:02 by mben-yah          #+#    #+#             */
-/*   Updated: 2024/07/07 11:22:00 by mben-yah         ###   ########.fr       */
+/*   Updated: 2024/07/07 20:54:26 by mben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ int main(int argc, char **argv)
 	validate_input(&fractal, argc, argv, &(fractal.c));
 	if (fractal.err < 0)
 		return (print_error(fractal.err), EXIT_FAILURE);
+	// usleep(20000000);
 	fractal.mlx = mlx_init(WIDTH, HEIGHT, "42-Fractol", true); 
 	if (!(fractal.mlx))
 		ft_error(&fractal);

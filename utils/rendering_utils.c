@@ -6,7 +6,7 @@
 /*   By: mben-yah <mben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 10:56:15 by mben-yah          #+#    #+#             */
-/*   Updated: 2024/07/07 15:37:21 by mben-yah         ###   ########.fr       */
+/*   Updated: 2024/07/07 19:53:05 by mben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ uint32_t smooth_color(double t, uint32_t *colors)
 	int 		index;
 	double 		scaled_t;
 
-    num_colors = 5;
+    num_colors = 10;
     scaled_t = t * (num_colors - 1);
     index = (int) scaled_t;
     frac = scaled_t - index;
@@ -67,9 +67,11 @@ uint32_t smooth_color(double t, uint32_t *colors)
 static void	put_pixels(t_fractal fractal, uint32_t iter)
 {
 	uint32_t	color;
+	uint32_t	iters;
 
+	iters = fractal.iters;
 	color = WHITE;
-	if (iter == fractal.iters)
+	if (iter == iters)
 	{
 		mlx_put_pixel(fractal.img, fractal.pixel_coords.i, 
 			fractal.pixel_coords.j, color);
@@ -79,7 +81,7 @@ static void	put_pixels(t_fractal fractal, uint32_t iter)
 	}
 	else
 	{
-		color = smooth_color((double)iter/fractal.iters, fractal.palette);
+		color = smooth_color((double)iter/iters, fractal.palette);
 		mlx_put_pixel(fractal.img, fractal.pixel_coords.i, 
 			fractal.pixel_coords.j, color);
 		if (fractal.type == MANDELBROT)
@@ -101,12 +103,13 @@ void	render_fractal(t_fractal fractal, t_complex z0, size_t iters, t_complex c)
 		if (SQUARRED_MAGNITUDE(z) > 4.00)
 			break ;
 		if (iter > 0)
+
 		{
-    		if (SQUARRED_MAGNITUDE(z) > 100)
+    		/* if (SQUARRED_MAGNITUDE(z) > 100)
     		{
         		iter = iters * (1 - log(log(sqrt(POW_OF_2(z.x) + POW_OF_2(z.y)))) / LOG_OF_2);
         		break;
-    		}
+    		} */
 		}
 		z1.x = POW_OF_2(z.x) - POW_OF_2(z.y) + c.x;
 		z1.y = 2 * z.x * z.y + c.y;
@@ -130,7 +133,7 @@ int draw_julia(t_fractal fractal, t_complex c, uint32_t iters)
         {
             z0 = (t_complex){i, j};
 			fractal.pixel_coords = (t_pixel) {i, j};
-            render_fractal(fractal, rescale(fractal, (t_complex){i, j}), iters, c);
+            render_fractal(fractal, rescale(fractal, z0), iters, c);
             j++;
         }
         i++;
@@ -153,11 +156,12 @@ int	draw_mandelbrot(t_fractal fractal, uint32_t iters)
 			fractal.pixel_coords = (t_pixel) {i, j};  
 			c = rescale(fractal, (t_complex){i, j});
 			if (is_in_mandelbrot_set(c.x, c.y) == true)
-				{
-					mlx_put_pixel(fractal.img, i, j, WHITE);
-					mlx_put_pixel(fractal.img, i, HEIGHT - j - 1, WHITE);	
-				}
-			render_fractal(fractal,  (t_complex){0, 0}, iters , c);
+			{
+				mlx_put_pixel(fractal.img, i, j, WHITE);
+				mlx_put_pixel(fractal.img, i, HEIGHT - j - 1, WHITE);
+			}
+			else
+				render_fractal(fractal,  (t_complex){0, 0}, iters , c);
 			j++;
 		}
 		i++;

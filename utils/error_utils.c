@@ -6,7 +6,7 @@
 /*   By: mben-yah <mben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 14:55:27 by mben-yah          #+#    #+#             */
-/*   Updated: 2024/07/06 15:08:19 by mben-yah         ###   ########.fr       */
+/*   Updated: 2024/07/07 20:49:33 by mben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	print_error(int err)
 {
 	if (err == ONE_ARGUMENT_ERR)
 		print_redundant("No arguements Were provided.");
-	else if (err == WRONG_FRCTAL_NAME)
+	else if (err == WRONG_FRACTAL_NAME)
 		print_redundant("Wrong fractal name.");
 	else if (err == NO_JULIA_PARAMS)
 		print_redundant("You must enter the parameters for the C constant.");

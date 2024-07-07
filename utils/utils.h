@@ -6,7 +6,7 @@
 /*   By: mben-yah <mben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 19:34:46 by mben-yah          #+#    #+#             */
-/*   Updated: 2024/07/07 15:36:45 by mben-yah         ###   ########.fr       */
+/*   Updated: 2024/07/07 20:48:57 by mben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,31 +14,48 @@
 # define UTILS_H
 
 
+/* Header files inclusions */
+
 #include "../lib/printf/ft_printf.h"
 #include "../lib/libft/libft.h"
 #include <stdlib.h>
 #include <math.h>
 #include <stdbool.h>
 #include <unistd.h>
-#include "../lib/libcmplx/ft_complex.h"
 #include "../lib/MLX42/MLX42.h"
 #include <float.h>
+
+
+
+/* Functions exit status macros */
 
 # define SUCCESS 0
 # define FAILURE -1
 
 
+
 /* Fractal types */
 
+# define NONE 40
 # define MANDELBROT 41
 # define JULIA 42
+
+
+
+/* Window dimensions */
 
 # define WIDTH 1000
 # define HEIGHT 1000
 
-# define DEFAULT_ITERS 42
-# define ZOOM_COEFF  0.95
+
+
+/* Different utilities macros */
+
+# define DEFAULT_ITERS 200
+# define ZOOM_COEFF 0.95
 # define LOG_OF_2 0.6931471805599453
+
+
 
 /* Color codes */
 
@@ -56,19 +73,38 @@
 # define ORANGE 0xFB8500FF
 
 
+
 /* Macro fucntions */
+
 # define MIN(a,b) (a)* (a < b) + (b) * (b < a)
 # define SQUARRED_MAGNITUDE(z) z.x * z.x + z.y * z.y
 # define POW_OF_2(x) x * x
 
-/* Error number */
+
+
+/* Error numbers */
 
 # define ONE_ARGUMENT_ERR -11
-# define WRONG_FRCTAL_NAME -12
+# define WRONG_FRACTAL_NAME -12
 # define NO_JULIA_PARAMS -13
 # define WRONG_NUMS_FORMAT_ERR -14
 # define EXCEEDS_MAX_DOUBLE -21
 # define RENDERING_ERR -22
+
+
+
+/* Structures for axes representation */
+
+
+typedef struct s_point
+{
+	double	x;
+	double	y;
+}	t_point;
+
+typedef t_point t_complex;
+
+
 
 /* A struct holding the coodinates of a pixel */
 
@@ -79,33 +115,36 @@ typedef struct s_pixel
 }	t_pixel;
 
 
+
 /* A struct holding informtion about the fractal to draw */
 
 typedef struct s_fractal
 {
 	mlx_t		*mlx;
 	mlx_image_t *img;
-	uint32_t	palette[10];
-	t_pixel		pixel_coords;
 	int			type;
-	int			err;
-	// t_point		cursor_coords;
-	t_point		axes_limits;
-	double		zoom_value;
-	t_complex	c;
 	uint32_t	iters;
-	// bool		cursor_flag;
+	t_complex	c;
+	t_pixel		pixel_coords;
+	double		zoom_value;
+	t_point		axes_limits;
+	uint32_t	palette[10];
+	int			err;
 	bool		scroll_flag;
+	bool		cursor_flag;
+	t_point		cursor_coords;
 } 	t_fractal;
 
 
 /* Input validation and initialization function */
+
 void		initilize_fractal(t_fractal *fractal);
 void		validate_input(t_fractal *fractal, int argc, char **args, t_complex *c);
 double		atod(const char *str, int *err);
 
 
 /* Rendering functions */
+
 void		draw_fractal(t_fractal *fractal);
 t_complex	quad_iter(t_complex z, t_complex c);
 t_complex	rescale(t_fractal fractal, t_complex z);
@@ -116,15 +155,18 @@ void		print_error(int err);
 
 
 /* Zoom functions */
+
 void		scroll_trigger(double xdelta, double ydelta, void* param);
 void		cursor_coords(double xpos, double ypos, void* param);
 
 
 /* Error function */
+
 void		ft_error(t_fractal *fractal);
 
 
 /* Exit function */
+
 void		clean_exit(t_fractal *fractal);
 
 
