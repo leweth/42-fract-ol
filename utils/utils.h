@@ -6,7 +6,7 @@
 /*   By: mben-yah <mben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 19:34:46 by mben-yah          #+#    #+#             */
-/*   Updated: 2024/07/06 19:17:18 by mben-yah         ###   ########.fr       */
+/*   Updated: 2024/07/07 15:36:45 by mben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,9 @@
 # define WIDTH 1000
 # define HEIGHT 1000
 
-# define DEFAULT_ITERS 100
+# define DEFAULT_ITERS 42
+# define ZOOM_COEFF  0.95
+# define LOG_OF_2 0.6931471805599453
 
 /* Color codes */
 
@@ -53,6 +55,11 @@
 # define AMBER 0xFFB703FF
 # define ORANGE 0xFB8500FF
 
+
+/* Macro fucntions */
+# define MIN(a,b) (a)* (a < b) + (b) * (b < a)
+# define SQUARRED_MAGNITUDE(z) z.x * z.x + z.y * z.y
+# define POW_OF_2(x) x * x
 
 /* Error number */
 
@@ -82,13 +89,12 @@ typedef struct s_fractal
 	t_pixel		pixel_coords;
 	int			type;
 	int			err;
-	t_point		cursor_coords;
-	t_point		x_axis_limits;
-	t_point		y_axis_limits;
+	// t_point		cursor_coords;
+	t_point		axes_limits;
 	double		zoom_value;
 	t_complex	c;
 	uint32_t	iters;
-	bool		cursor_flag;
+	// bool		cursor_flag;
 	bool		scroll_flag;
 } 	t_fractal;
 
@@ -105,7 +111,6 @@ t_complex	quad_iter(t_complex z, t_complex c);
 t_complex	rescale(t_fractal fractal, t_complex z);
 int			draw_julia(t_fractal fractal, t_complex c, uint32_t iters);
 int			draw_mandelbrot(t_fractal fractal, uint32_t iters);
-int			min(int a, int b);
 void		color_palette();
 void		print_error(int err);
 

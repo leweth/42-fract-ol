@@ -21,9 +21,9 @@ PRINTF = "lib/printf"
 
 LIBFT = "lib/libft"
 
-LIBCMPLX =  "lib/libcmplx"
+# LIBCMPLX =  "lib/libcmplx"
 
-LIBS = -lglfw -L${GLFW_PATH} ${MLX} ${OBJS} -L${PRINTF} -lftprintf -L${LIBFT} -lft -L${LIBCMPLX} -lcmplx -lm
+LIBS = -lglfw -L${GLFW_PATH} ${MLX} ${OBJS} -L${PRINTF} -lftprintf -L${LIBFT} -lft -lm #-L${LIBCMPLX} -lcmplx 
 
 
 %.o: %.c utils.h
@@ -33,7 +33,7 @@ LIBS = -lglfw -L${GLFW_PATH} ${MLX} ${OBJS} -L${PRINTF} -lftprintf -L${LIBFT} -l
 all: ${NAME}
 
 
-${NAME}: ${PRINTF} ${SMLX} ${LIBFT} ${OBJS} ${LIBCMPLX}
+${NAME}: ${PRINTF} ${SMLX} ${LIBFT} ${OBJS} #${LIBCMPLX}
 	@echo "\033[1;33mBuilding Target...\033[0m"
 	${CC} ${CFLAGS} fractol.c ${LIBS} -o ${NAME}
 	@echo "\033[1;32mTarget Built Successfully!\033[0m"
@@ -49,9 +49,9 @@ ${PRINTF}:
 	cd lib/printf && ${MAKE}
 
 
-${LIBCMPLX}:
-	@echo "\033[1;33mBuilding libcmplx...\033[0m"
-	cd lib/libcmplx && ${MAKE}
+# ${LIBCMPLX}:
+# 	@echo "\033[1;33mBuilding libcmplx...\033[0m"
+# 	cd lib/libcmplx && ${MAKE}
 
 
 ${SMLX}:
