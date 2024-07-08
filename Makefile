@@ -21,8 +21,6 @@ PRINTF = "lib/printf"
 
 LIBFT = "lib/libft"
 
-# LIBCMPLX =  "lib/libcmplx"
-
 LIBS = -lglfw -L${GLFW_PATH} ${MLX} ${OBJS} -L${PRINTF} -lftprintf -L${LIBFT} -lft -lm #-L${LIBCMPLX} -lcmplx 
 
 
@@ -33,7 +31,7 @@ LIBS = -lglfw -L${GLFW_PATH} ${MLX} ${OBJS} -L${PRINTF} -lftprintf -L${LIBFT} -l
 all: ${NAME}
 
 
-${NAME}: ${PRINTF} ${SMLX} ${LIBFT} ${OBJS} #${LIBCMPLX}
+${NAME}: ${PRINTF} ${SMLX} ${LIBFT} ${OBJS}
 	@echo "\033[1;33mBuilding Target...\033[0m"
 	${CC} ${CFLAGS} fractol.c ${LIBS} -o ${NAME}
 	@echo "\033[1;32mTarget Built Successfully!\033[0m"
@@ -49,11 +47,6 @@ ${PRINTF}:
 	cd lib/printf && ${MAKE}
 
 
-# ${LIBCMPLX}:
-# 	@echo "\033[1;33mBuilding libcmplx...\033[0m"
-# 	cd lib/libcmplx && ${MAKE}
-
-
 ${SMLX}:
 	@echo "\033[1;33mFetching the MLX library...\033[0m"
 	echo $(SMLX)
@@ -64,7 +57,6 @@ clean:
 	@echo "\033[1;33mRemoving Object files...\033[0m"
 	cd lib/printf && ${MAKE} clean
 	cd lib/libft && ${MAKE} clean
-	cd lib/libcmplx && ${MAKE} clean
 	rm ${OBJS}
 
 
@@ -74,6 +66,5 @@ fclean: clean
 	rm ${MLX}
 	cd lib/printf && ${MAKE} fclean
 	cd lib/libft && ${MAKE} fclean
-	cd lib/libcmplx && ${MAKE} fclean
 
 re: fclean ${NAME}

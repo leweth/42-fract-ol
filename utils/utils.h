@@ -6,7 +6,7 @@
 /*   By: mben-yah <mben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 19:34:46 by mben-yah          #+#    #+#             */
-/*   Updated: 2024/07/07 20:48:57 by mben-yah         ###   ########.fr       */
+/*   Updated: 2024/07/08 11:25:38 by mben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,8 @@
 # define DEFAULT_ITERS 200
 # define ZOOM_COEFF 0.95
 # define LOG_OF_2 0.6931471805599453
-
+# define X_MOVE 20
+# define Y_MOVE -20
 
 
 /* Color codes */
@@ -118,6 +119,8 @@ typedef struct s_pixel
 
 /* A struct holding informtion about the fractal to draw */
 
+typedef t_point	t_movement;
+
 typedef struct s_fractal
 {
 	mlx_t		*mlx;
@@ -133,6 +136,7 @@ typedef struct s_fractal
 	bool		scroll_flag;
 	bool		cursor_flag;
 	t_point		cursor_coords;
+	t_movement	moves;
 } 	t_fractal;
 
 

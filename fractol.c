@@ -6,7 +6,7 @@
 /*   By: mben-yah <mben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 19:35:02 by mben-yah          #+#    #+#             */
-/*   Updated: 2024/07/07 20:54:26 by mben-yah         ###   ########.fr       */
+/*   Updated: 2024/07/08 11:29:49 by mben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,15 @@ static void	esc_hook(mlx_key_data_t keydata, void* param)
 	fractal = param;
 	if (keydata.key == MLX_KEY_ESCAPE && keydata.action == MLX_PRESS)
 		clean_exit(fractal);
+	if (keydata.key == MLX_KEY_UP && keydata.action == MLX_PRESS)
+		fractal->moves.y += Y_MOVE;
+	if (keydata.key == MLX_KEY_DOWN && keydata.action == MLX_PRESS)
+		fractal->moves.y -= Y_MOVE;
+	if (keydata.key == MLX_KEY_RIGHT && keydata.action == MLX_PRESS)
+		fractal->moves.x += X_MOVE;
+	if (keydata.key == MLX_KEY_LEFT && keydata.action == MLX_PRESS)
+		fractal->moves.x -= X_MOVE;
+	draw_fractal(fractal);
 }
 
 int main(int argc, char **argv)
