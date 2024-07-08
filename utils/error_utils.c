@@ -6,11 +6,11 @@
 /*   By: mben-yah <mben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 14:55:27 by mben-yah          #+#    #+#             */
-/*   Updated: 2024/07/07 20:49:33 by mben-yah         ###   ########.fr       */
+/*   Updated: 2024/07/08 12:04:02 by mben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "utils.h"
+#include "../includes/utils.h"
 
 static void	print_redundant(const char *str)
 {

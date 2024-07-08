@@ -24,7 +24,7 @@ LIBFT = "lib/libft"
 LIBS = -lglfw -L${GLFW_PATH} ${MLX} ${OBJS} -L${PRINTF} -lftprintf -L${LIBFT} -lft -lm #-L${LIBCMPLX} -lcmplx 
 
 
-%.o: %.c utils/utils.h
+%.o: %.c includes/utils.h
 	${CC} ${CFLAGS} -c $< -o $@
 
 

@@ -6,11 +6,11 @@
 /*   By: mben-yah <mben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 10:56:15 by mben-yah          #+#    #+#             */
-/*   Updated: 2024/07/07 19:53:05 by mben-yah         ###   ########.fr       */
+/*   Updated: 2024/07/08 12:02:35 by mben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "utils.h"
+#include "../includes/utils.h"
 
 bool	is_in_mandelbrot_set(double x, double y)
 {

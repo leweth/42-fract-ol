@@ -6,7 +6,7 @@
 /*   By: mben-yah <mben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 19:34:46 by mben-yah          #+#    #+#             */
-/*   Updated: 2024/07/08 11:25:38 by mben-yah         ###   ########.fr       */
+/*   Updated: 2024/07/08 12:03:06 by mben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,13 @@
 
 /* Header files inclusions */
 
-#include "../lib/printf/ft_printf.h"
-#include "../lib/libft/libft.h"
+#include "ft_printf.h"
+#include "libft.h"
 #include <stdlib.h>
 #include <math.h>
 #include <stdbool.h>
 #include <unistd.h>
-#include "../lib/MLX42/MLX42.h"
+#include "MLX42.h"
 #include <float.h>
 
 

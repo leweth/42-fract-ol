@@ -6,11 +6,11 @@
 /*   By: mben-yah <mben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 19:34:50 by mben-yah          #+#    #+#             */
-/*   Updated: 2024/07/07 20:47:34 by mben-yah         ###   ########.fr       */
+/*   Updated: 2024/07/08 12:04:15 by mben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "utils.h"
+#include "../includes/utils.h"
 
 static void	str_to_lower(char *str)
 {
