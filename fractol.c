@@ -6,19 +6,11 @@
 /*   By: mben-yah <mben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 19:35:02 by mben-yah          #+#    #+#             */
-/*   Updated: 2024/07/08 12:01:50 by mben-yah         ###   ########.fr       */
+/*   Updated: 2024/07/08 15:43:30 by mben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/utils.h"
-
-/* static void clean_close(void* param)
-{
-	t_fractal *fractal;
-
-	fractal = param;
-	clean_exit(fractal);
-} */
 
 static void	esc_hook(mlx_key_data_t keydata, void* param)
 {
@@ -27,15 +19,6 @@ static void	esc_hook(mlx_key_data_t keydata, void* param)
 	fractal = param;
 	if (keydata.key == MLX_KEY_ESCAPE && keydata.action == MLX_PRESS)
 		clean_exit(fractal);
-	if (keydata.key == MLX_KEY_UP && keydata.action == MLX_PRESS)
-		fractal->moves.y += Y_MOVE;
-	if (keydata.key == MLX_KEY_DOWN && keydata.action == MLX_PRESS)
-		fractal->moves.y -= Y_MOVE;
-	if (keydata.key == MLX_KEY_RIGHT && keydata.action == MLX_PRESS)
-		fractal->moves.x += X_MOVE;
-	if (keydata.key == MLX_KEY_LEFT && keydata.action == MLX_PRESS)
-		fractal->moves.x -= X_MOVE;
-	draw_fractal(fractal);
 }
 
 int main(int argc, char **argv)
@@ -46,7 +29,6 @@ int main(int argc, char **argv)
 	validate_input(&fractal, argc, argv, &(fractal.c));
 	if (fractal.err < 0)
 		return (print_error(fractal.err), EXIT_FAILURE);
-	// usleep(20000000);
 	fractal.mlx = mlx_init(WIDTH, HEIGHT, "42-Fractol", true); 
 	if (!(fractal.mlx))
 		ft_error(&fractal);
@@ -59,8 +41,6 @@ int main(int argc, char **argv)
 	if (fractal.err < 0)
 		clean_exit(&fractal);
 	mlx_key_hook(fractal.mlx, esc_hook, (void *) &fractal);
-	// mlx_cursor_hook(fractal.mlx, cursor_coords, &fractal);
-	// mlx_close_hook(fractal.mlx, clean_close, &fractal);
 	mlx_scroll_hook(fractal.mlx, scroll_trigger, &fractal);
 	mlx_loop(fractal.mlx);
 	clean_exit(&fractal);

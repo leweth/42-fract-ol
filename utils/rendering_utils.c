@@ -6,7 +6,7 @@
 /*   By: mben-yah <mben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 10:56:15 by mben-yah          #+#    #+#             */
-/*   Updated: 2024/07/08 12:02:35 by mben-yah         ###   ########.fr       */
+/*   Updated: 2024/07/08 15:43:58 by mben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,11 +105,11 @@ void	render_fractal(t_fractal fractal, t_complex z0, size_t iters, t_complex c)
 		if (iter > 0)
 
 		{
-    		/* if (SQUARRED_MAGNITUDE(z) > 100)
+    		if (SQUARRED_MAGNITUDE(z) > 100)
     		{
         		iter = iters * (1 - log(log(sqrt(POW_OF_2(z.x) + POW_OF_2(z.y)))) / LOG_OF_2);
         		break;
-    		} */
+    		}
 		}
 		z1.x = POW_OF_2(z.x) - POW_OF_2(z.y) + c.x;
 		z1.y = 2 * z.x * z.y + c.y;

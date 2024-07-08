@@ -6,7 +6,7 @@
 /*   By: mben-yah <mben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/27 15:24:44 by mben-yah          #+#    #+#             */
-/*   Updated: 2024/07/08 12:04:12 by mben-yah         ###   ########.fr       */
+/*   Updated: 2024/07/08 12:32:39 by mben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ void	initilize_fractal(t_fractal *fractal)
 	fractal->c = (t_complex){0, 0};
 	fractal->scroll_flag = false;
 	fractal->cursor_flag = false;
-	fractal->moves = (t_point){0, 0};
 }
 
 
@@ -36,8 +35,8 @@ t_complex	rescale(t_fractal fractal, t_complex z)
 	t_complex	z0;
 
 	z0.x = (((z.x - 0.0) * (fractal.axes_limits.x  - fractal.axes_limits.y ) 
-			/ (WIDTH - 0)) + fractal.axes_limits.y + fractal.moves.x ) * fractal.zoom_value;
+			/ (WIDTH - 0)) + fractal.axes_limits.y) * fractal.zoom_value;
 	z0.y = (((z.y - 0.0) * (fractal.axes_limits.x - fractal.axes_limits.y ) 
-			/ (HEIGHT - 0)) + fractal.axes_limits.y + fractal.moves.y) * fractal.zoom_value;
+			/ (HEIGHT - 0)) + fractal.axes_limits.y) * fractal.zoom_value;
 	return (z0);
 }

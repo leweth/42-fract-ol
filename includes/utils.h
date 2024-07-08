@@ -6,7 +6,7 @@
 /*   By: mben-yah <mben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 19:34:46 by mben-yah          #+#    #+#             */
-/*   Updated: 2024/07/08 12:03:06 by mben-yah         ###   ########.fr       */
+/*   Updated: 2024/07/08 15:53:18 by mben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@
 #include <stdbool.h>
 #include <unistd.h>
 #include "MLX42.h"
-#include <float.h>
 
 
 
@@ -41,7 +40,6 @@
 # define JULIA 42
 
 
-
 /* Window dimensions */
 
 # define WIDTH 1000
@@ -51,11 +49,10 @@
 
 /* Different utilities macros */
 
-# define DEFAULT_ITERS 200
+# define DEFAULT_ITERS 500
 # define ZOOM_COEFF 0.95
 # define LOG_OF_2 0.6931471805599453
-# define X_MOVE 20
-# define Y_MOVE -20
+
 
 
 /* Color codes */
@@ -119,7 +116,6 @@ typedef struct s_pixel
 
 /* A struct holding informtion about the fractal to draw */
 
-typedef t_point	t_movement;
 
 typedef struct s_fractal
 {
@@ -136,14 +132,13 @@ typedef struct s_fractal
 	bool		scroll_flag;
 	bool		cursor_flag;
 	t_point		cursor_coords;
-	t_movement	moves;
 } 	t_fractal;
 
 
 /* Input validation and initialization function */
 
 void		initilize_fractal(t_fractal *fractal);
-void		validate_input(t_fractal *fractal, int argc, char **args, t_complex *c);
+int			validate_input(t_fractal *fractal, int argc, char **args, t_complex *c);
 double		atod(const char *str, int *err);
 
 
@@ -161,7 +156,6 @@ void		print_error(int err);
 /* Zoom functions */
 
 void		scroll_trigger(double xdelta, double ydelta, void* param);
-void		cursor_coords(double xpos, double ypos, void* param);
 
 
 /* Error function */
