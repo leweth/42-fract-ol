@@ -6,22 +6,22 @@
 /*   By: mben-yah <mben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 19:35:02 by mben-yah          #+#    #+#             */
-/*   Updated: 2024/07/08 15:43:30 by mben-yah         ###   ########.fr       */
+/*   Updated: 2024/07/14 18:20:39 by mben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/utils.h"
 
-static void	esc_hook(mlx_key_data_t keydata, void* param)
+static void	esc_hook(mlx_key_data_t keydata, void *param)
 {
-	t_fractal *fractal;
+	t_fractal	*fractal;
 
 	fractal = param;
 	if (keydata.key == MLX_KEY_ESCAPE && keydata.action == MLX_PRESS)
 		clean_exit(fractal);
 }
 
-int main(int argc, char **argv)
+int	main(int argc, char **argv)
 {
 	t_fractal	fractal;
 
@@ -29,7 +29,7 @@ int main(int argc, char **argv)
 	validate_input(&fractal, argc, argv, &(fractal.c));
 	if (fractal.err < 0)
 		return (print_error(fractal.err), EXIT_FAILURE);
-	fractal.mlx = mlx_init(WIDTH, HEIGHT, "42-Fractol", true); 
+	fractal.mlx = mlx_init(WIDTH, HEIGHT, "42-Fractol", false); 
 	if (!(fractal.mlx))
 		ft_error(&fractal);
 	fractal.img = mlx_new_image(fractal.mlx, WIDTH, HEIGHT);

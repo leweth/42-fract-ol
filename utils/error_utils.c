@@ -6,7 +6,7 @@
 /*   By: mben-yah <mben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 14:55:27 by mben-yah          #+#    #+#             */
-/*   Updated: 2024/07/08 12:04:02 by mben-yah         ###   ########.fr       */
+/*   Updated: 2024/07/08 17:21:47 by mben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,13 +30,11 @@ void	print_error(int err)
 		print_redundant("You must enter the parameters for the C constant.");
 	else if (err == WRONG_NUMS_FORMAT_ERR)
 		print_redundant("Wrong format for the complex constant.");
-	else if (err == EXCEEDS_MAX_DOUBLE)
-		print_redundant("Number exceeds the available max for the double data type.");
 	else if (err == RENDERING_ERR)
 		ft_printf("Error in rendering.\n");
 }
 
-void ft_error(t_fractal *fractal)
+void	ft_error(t_fractal *fractal)
 {
 	ft_printf("%s\n", mlx_strerror(mlx_errno));
 	clean_exit(fractal);

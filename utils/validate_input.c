@@ -6,7 +6,7 @@
 /*   By: mben-yah <mben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 19:34:50 by mben-yah          #+#    #+#             */
-/*   Updated: 2024/07/08 15:42:10 by mben-yah         ###   ########.fr       */
+/*   Updated: 2024/07/14 18:27:16 by mben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,9 @@ static void	str_to_lower(char *str)
 static int	check_set(char *str)
 {
 	str_to_lower(str);
-	if (!ft_memcmp(str, "mandelbrot", 10))
+	if (!ft_memcmp(str, "mandelbrot", 11))
 		return (MANDELBROT);
-	else if (!ft_memcmp(str, "julia", 5))
+	else if (!ft_memcmp(str, "julia", 6))
 		return (JULIA);
 	else
 		return (WRONG_FRACTAL_NAME);

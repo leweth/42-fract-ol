@@ -6,13 +6,13 @@
 /*   By: mben-yah <mben-yah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/12 18:48:03 by mben-yah          #+#    #+#             */
-/*   Updated: 2024/07/08 15:47:21 by mben-yah         ###   ########.fr       */
+/*   Updated: 2024/07/14 12:12:41 by mben-yah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-/*
+/*  
 	DESCRIPTION :
 	The function ft_atoi converts a string into an int.
 
